@@ -147,13 +147,14 @@ app.use(express.json());
 
 // ✅ Allowed Origins
 const allowedOrigins = [
-  'https://rashtriya-kishan-manch.vercel.app', 
-  'https://api.rashtriyakisanmanch.com', 
-  'http://localhost:4028', 
-  'http://localhost:3000', 
+  'https://rashtriya-kishan-manch.vercel.app',
+  'https://api.rashtriyakisanmanch.com',
+  'http://localhost:4028',
+  'http://localhost:3000',
   'https://kishan-andolan.vercel.app',
   'https://kisan-andolan.vercel.app',
-  'https://kisanrajmanch.vercel.app'
+  'https://kisanrajmanch.vercel.app',
+  'https://frontend-kisanrajmanch-q45c.vercel.app'
 ];
 
 // ✅ CORS Setup
