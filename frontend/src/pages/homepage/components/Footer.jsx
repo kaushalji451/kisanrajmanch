@@ -5,6 +5,8 @@ import Icon from 'components/AppIcon';
 import logo from '/assets/images/logo.webp';
 import { useLanguage } from '../../../contexts/LanguageContext';
 
+import { API_BASE_URL } from '../../../config/constants';
+
 const Footer = () => {
   const [amount, setAmount] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -42,12 +44,12 @@ const Footer = () => {
     // const { data } = await axios.post("https://api.rashtriyakisanmanch.com/api/donate/create-order", { amount });
 
     // new one
-    const { data } = await axios.post("https://kisanrajmanch.vercel.app/api/donate/create-order", { amount });
+    const { data } = await axios.post(`${API_BASE_URL}/api/donate/create-order`, { amount });
   
     // old one 
     // const keyRes = await axios.get("https://api.rashtriyakisanmanch.com/getKey");
     // new one
-    const keyRes = await axios.get("https://api.rashtriyakisanmanch.com/getKey");
+    const keyRes = await axios.get(`${API_BASE_URL}/getKey`);
     
     const key = keyRes.data;
 

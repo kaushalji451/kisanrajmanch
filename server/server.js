@@ -15,16 +15,41 @@ const app = express();
 app.use(express.json());
 
 // Enable CORS with specific options
+// app.use(cors({
+//   origin: [
+//     'https://rashtriya-kishan-manch.vercel.app', 
+//     'https://api.rashtriyakisanmanch.com', 
+//     'http://localhost:4028', 
+//     'http://localhost:3000', 
+//     'https://kishan-andolan.vercel.app',
+//     'https://kisan-andolan.vercel.app',
+//     'https://kisanrajmanch.vercel.app'
+//   ],
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+//   credentials: true
+// }));
+
+const allowedOrigins = [
+  'https://rashtriya-kishan-manch.vercel.app', 
+  'https://api.rashtriyakisanmanch.com', 
+  'http://localhost:4028', 
+  'http://localhost:3000', 
+  'https://kishan-andolan.vercel.app',
+  'https://kisan-andolan.vercel.app',
+  'https://kisanrajmanch.vercel.app'
+];
+
 app.use(cors({
-  origin: [
-    'https://rashtriya-kishan-manch.vercel.app', 
-    'https://api.rashtriyakisanmanch.com', 
-    'http://localhost:4028', 
-    'http://localhost:3000', 
-    'https://kishan-andolan.vercel.app',
-    'https://kisan-andolan.vercel.app',
-    'https://kisanrajmanch.vercel.app'
-  ],
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true

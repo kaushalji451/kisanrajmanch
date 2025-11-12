@@ -1,8 +1,7 @@
 // API constants
 // export const API_BASE_URL = 'https://api.rashtriyakisanmanch.com';
-// export const API_BASE_URL = 'http://localhost:5001';
-
-export const API_BASE_URL = 'https://kisanrajmanch.vercel.app';
+export const API_BASE_URL = 'http://localhost:5001';
+// export const API_BASE_URL = 'https://kisanrajmanch.vercel.app';
 
 // Status constants for member applications
 export const MEMBER_STATUS = {
