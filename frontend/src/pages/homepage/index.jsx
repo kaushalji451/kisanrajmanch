@@ -31,7 +31,7 @@ const Homepage = () => {
       />
 
       {/* Mission Highlights */}
-      {/* <MissionHighlights /> */}
+      <MissionHighlights />
 
       {/* Milestones Section */}
       <MilestonesSection />

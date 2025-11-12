@@ -472,6 +472,7 @@ const AndolanTimelinePage = () => {
                       aria-label="Previous milestone"
                       disabled={filteredData.findIndex(item => item.year === selectedYear) === 0}
                     >
+                      {console.log("this is filerte data ",filteredData)}
                       <Icon
                         name="ArrowLeft"
                         size={20}
