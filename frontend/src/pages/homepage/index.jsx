@@ -32,9 +32,6 @@ const Homepage = () => {
 
       {/* Mission Highlights */}
       {/* <MissionHighlights /> */}
-      <div>
-        loading the data 
-      </div>
 
       {/* Milestones Section */}
       <MilestonesSection />
