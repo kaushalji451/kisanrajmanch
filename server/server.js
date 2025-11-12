@@ -22,7 +22,8 @@ app.use(cors({
     'http://localhost:4028', 
     'http://localhost:3000', 
     'https://kishan-andolan.vercel.app',
-    'https://kisan-andolan.vercel.app'
+    'https://kisan-andolan.vercel.app',
+    'https://kisanrajmanch.vercel.app'
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],

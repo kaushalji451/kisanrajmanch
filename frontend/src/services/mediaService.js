@@ -1,7 +1,7 @@
 import api from './api';
 import visionService from './visionService';
 
-const API_URL = '/api/media';
+const API_URL = 'https://kisanrajmanch.vercel.app/api/media';
 
 const getMediaItems = (params) => api.get(API_URL, { params });
 const getMediaItemById = (id) => api.get(`${API_URL}/${id}`);

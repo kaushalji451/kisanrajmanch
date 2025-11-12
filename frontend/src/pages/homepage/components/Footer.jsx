@@ -42,8 +42,8 @@ const Footer = () => {
     // const { data } = await axios.post("https://api.rashtriyakisanmanch.com/api/donate/create-order", { amount });
 
     // new one
-    const { data } = await axios.post("http://localhost:5001/api/donate/create-order", { amount });
-
+    const { data } = await axios.post("https://kisanrajmanch.vercel.app/api/donate/create-order", { amount });
+  
     // old one 
     // const keyRes = await axios.get("https://api.rashtriyakisanmanch.com/getKey");
     // new one
