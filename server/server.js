@@ -154,7 +154,8 @@ const allowedOrigins = [
   'https://kishan-andolan.vercel.app',
   'https://kisan-andolan.vercel.app',
   'https://kisanrajmanch.vercel.app',
-  'https://frontend-kisanrajmanch-q45c.vercel.app'
+  'https://frontend-kisanrajmanch-q45c.vercel.app',
+  `${process.env.FRONTEND_URL}`
 ];
 
 // ✅ CORS Setup
