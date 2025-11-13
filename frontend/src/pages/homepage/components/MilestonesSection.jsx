@@ -13,15 +13,15 @@ const MilestonesSection = () => {
   const [milestones, setMilestones] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [expandedMilestone, setExpandedMilestone] = useState(null);
 
   useEffect(() => {
     const fetchMilestones = async () => {
       try {
         setLoading(true);
         const response = await getKeyMilestones();
-        
+
         if (response && response.data) {
+          console.log("this is my data ", response);
           // Process and format the timeline data
           const processedData = response.data.map(item => ({
             id: item._id,
@@ -36,10 +36,10 @@ const MilestonesSection = () => {
             isKeyMilestone: item.isKeyMilestone || false,
             gallery: item.gallery || []
           }));
-          
+
           // Sort by date in descending order (newest first)
           const sortedData = processedData.sort((a, b) => parseInt(b.year) - parseInt(a.year));
-          
+
           // Take only the 5 most recent milestones
           const recentMilestones = sortedData.slice(0, 5);
           setMilestones(recentMilestones);
@@ -59,47 +59,41 @@ const MilestonesSection = () => {
     fetchMilestones();
   }, [language]);
 
-  // Toggle expanded milestone
-  const toggleExpanded = (id) => {
-    if (expandedMilestone === id) {
-      setExpandedMilestone(null);
-    } else {
-      setExpandedMilestone(id);
-    }
-  };
-
   const content = {
     en: {
       title: "Our Journey",
       subtitle: "Key milestones in our mission to transform agriculture",
       viewTimeline: "View Complete Timeline",
-      knowMore: "Know More",
-      showLess: "Show Less",
       milestones: [
         {
           year: "2003",
           title: "Foundation",
-          description: "Kisan Andolan was established with a vision to empower farmers and transform rural communities."
+          description: "Kisan Andolan was established with a vision to empower farmers and transform rural communities.",
+          gallery: []
         },
         {
           year: "2010",
           title: "First Training Center",
-          description: "Opened our first agricultural training center, reaching over 1,000 farmers in the first year."
+          description: "Opened our first agricultural training center, reaching over 1,000 farmers in the first year.",
+          gallery: []
         },
         {
           year: "2015",
           title: "Technology Integration",
-          description: "Launched digital platforms and mobile apps to connect farmers with markets and resources."
+          description: "Launched digital platforms and mobile apps to connect farmers with markets and resources.",
+          gallery: []
         },
         {
           year: "2020",
           title: "Pandemic Response",
-          description: "Adapted programs to support farmers during COVID-19, ensuring food security and livelihoods."
+          description: "Adapted programs to support farmers during COVID-19, ensuring food security and livelihoods.",
+          gallery: []
         },
         {
           year: "2024",
           title: "Sustainable Future",
-          description: "Expanding renewable energy projects and climate-smart agriculture across 500+ villages."
+          description: "Expanding renewable energy projects and climate-smart agriculture across 500+ villages.",
+          gallery: []
         }
       ]
     },
@@ -107,33 +101,36 @@ const MilestonesSection = () => {
       title: "हमारी यात्रा",
       subtitle: "कृषि को बदलने के हमारे मिशन में मुख्य मील के पत्थर",
       viewTimeline: "पूरी समयसीमा देखें",
-      knowMore: "और जानें",
-      showLess: "कम दिखाएँ",
       milestones: [
         {
           year: "2003",
           title: "स्थापना",
-          description: "किसान आंदोलन की स्थापना किसानों को सशक्त बनाने और ग्रामीण समुदायों को बदलने के दृष्टिकोण के साथ की गई।"
+          description: "किसान आंदोलन की स्थापना किसानों को सशक्त बनाने और ग्रामीण समुदायों को बदलने के दृष्टिकोण के साथ की गई।",
+          gallery: []
         },
         {
           year: "2010",
           title: "पहला प्रशिक्षण केंद्र",
-          description: "हमारा पहला कृषि प्रशिक्षण केंद्र खोला, पहले वर्ष में 1,000 से अधिक किसानों तक पहुंचे।"
+          description: "हमारा पहला कृषि प्रशिक्षण केंद्र खोला, पहले वर्ष में 1,000 से अधिक किसानों तक पहुंचे।",
+          gallery: []
         },
         {
           year: "2015",
           title: "प्रौद्योगिकी एकीकरण",
-          description: "किसानों को बाजारों और संसाधनों से जोड़ने के लिए डिजिटल प्लेटफॉर्म और मोबाइल ऐप लॉन्च किए।"
+          description: "किसानों को बाजारों और संसाधनों से जोड़ने के लिए डिजिटल प्लेटफॉर्म और मोबाइल ऐप लॉन्च किए।",
+          gallery: []
         },
         {
           year: "2020",
           title: "महामारी प्रतिक्रिया",
-          description: "COVID-19 के दौरान किसानों का समर्थन करने के लिए कार्यक्रमों को अनुकूलित किया, खाद्य सुरक्षा और आजीविका सुनिश्चित की।"
+          description: "COVID-19 के दौरान किसानों का समर्थन करने के लिए कार्यक्रमों को अनुकूलित किया, खाद्य सुरक्षा और आजीविका सुनिश्चित की।",
+          gallery: []
         },
         {
           year: "2024",
           title: "टिकाऊ भविष्य",
-          description: "500+ गांवों में नवीकरणीय ऊर्जा परियोजनाओं और जलवायु-स्मार्ट कृषि का विस्तार।"
+          description: "500+ गांवों में नवीकरणीय ऊर्जा परियोजनाओं और जलवायु-स्मार्ट कृषि का विस्तार।",
+          gallery: []
         }
       ]
     }
@@ -146,7 +143,6 @@ const MilestonesSection = () => {
   const createMilestonePairs = (milestones) => {
     const pairs = [];
     for (let i = 0; i < milestones.length; i += 2) {
-      // Create a pair with the current milestone and the next one (if exists)
       pairs.push({
         left: milestones[i],
         right: i + 1 < milestones.length ? milestones[i + 1] : null
@@ -156,6 +152,40 @@ const MilestonesSection = () => {
   };
 
   const milestonePairs = createMilestonePairs(displayMilestones);
+
+  // Milestone Card Component - Gallery always visible
+  const MilestoneCard = ({ milestone }) => {
+    const hasGallery = milestone.gallery && milestone.gallery.length > 0;
+
+    return (
+      <div className="card p-6 bg-white rounded-lg shadow-sm">
+        <div className="mb-4">
+          <span className="inline-block bg-primary text-white px-4 py-2 rounded-full text-lg font-bold">
+            {milestone.year}
+          </span>
+        </div>
+        <h3 className="text-xl font-heading font-semibold text-text-primary mb-3">
+          <TranslateText>{milestone.title}</TranslateText>
+        </h3>
+        <p className="text-sm text-text-secondary mb-4">
+          <TranslateText>{milestone.description}</TranslateText>
+        </p>
+
+        {/* Gallery Section - Always Visible */}
+        {hasGallery && (
+          <div className="mt-4">
+            <div className="relative w-full max-w-md mx-auto aspect-[14/9] overflow-hidden rounded-lg">
+              <Image
+                src={milestone.gallery[0]}
+                alt={`${milestone.title} image`}
+                className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
 
   if (loading) {
     return (
@@ -188,7 +218,7 @@ const MilestonesSection = () => {
             <p className="text-lg text-text-secondary max-w-3xl mx-auto mb-8">
               {content[language].subtitle}
             </p>
-            
+
             <Link
               to="/andolan-timeline-page"
               className="btn-outline inline-flex items-center space-x-2"
@@ -216,7 +246,7 @@ const MilestonesSection = () => {
           <p className="text-lg text-text-secondary max-w-3xl mx-auto mb-8">
             {content[language].subtitle}
           </p>
-          
+
           <Link
             to="/andolan-timeline-page"
             className="btn-outline inline-flex items-center space-x-2"
@@ -230,7 +260,7 @@ const MilestonesSection = () => {
         <div className="relative hidden md:block">
           {/* Timeline Line */}
           <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-accent h-full" />
-          
+
           <div className="space-y-24">
             {milestonePairs.map((pair, pairIndex) => (
               <div key={`pair-${pairIndex}`} className="relative">
@@ -238,44 +268,20 @@ const MilestonesSection = () => {
                 <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
                   <div className="w-6 h-6 bg-primary rounded-full border-4 border-surface shadow-lg" />
                 </div>
-                
+
                 {/* Content - arranged in two columns */}
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-start">
                   {/* Left Content */}
                   <div className="w-5/12 pr-16 text-right">
-                    <div className="card p-4 bg-white rounded-lg shadow-sm">
-                      <div className="mb-4">
-                        <span className="inline-block bg-primary text-white px-4 py-2 rounded-full text-lg font-bold">
-                          {pair.left.year}
-                        </span>
-                      </div>
-                      <h3 className="text-xl font-heading font-semibold text-text-primary mb-3">
-                        <TranslateText>{pair.left.title}</TranslateText>
-                      </h3>
-                      <p className="text-sm text-text-secondary">
-                        <TranslateText>{pair.left.description}</TranslateText>
-                      </p>
-                    </div>
+                    <MilestoneCard milestone={pair.left} />
                   </div>
-                  
+
                   {/* Right Column (Spacer or Content) */}
                   <div className="w-5/12 pl-16">
                     {pair.right ? (
-                      <div className="card p-4 bg-white rounded-lg shadow-sm">
-                        <div className="mb-4">
-                          <span className="inline-block bg-primary text-white px-4 py-2 rounded-full text-lg font-bold">
-                            {pair.right.year}
-                          </span>
-                        </div>
-                        <h3 className="text-xl font-heading font-semibold text-text-primary mb-3">
-                          <TranslateText>{pair.right.title}</TranslateText>
-                        </h3>
-                        <p className="text-sm text-text-secondary">
-                          <TranslateText>{pair.right.description}</TranslateText>
-                        </p>
-                      </div>
+                      <MilestoneCard milestone={pair.right} />
                     ) : (
-                      <div></div> // Empty placeholder for layout balance
+                      <div></div>
                     )}
                   </div>
                 </div>
@@ -283,26 +289,30 @@ const MilestonesSection = () => {
             ))}
           </div>
         </div>
-        
+
         {/* Mobile Timeline */}
         <div className="md:hidden">
           <div className="space-y-8">
-            {displayMilestones.map((milestone) => (
-              <div key={milestone.id || milestone.year} className="relative pl-8 border-l-2 border-primary">
-                <div className="absolute left-[-9px] top-0">
-                  <div className="w-4 h-4 bg-primary rounded-full" />
+            {displayMilestones.map((milestone) => {
+              const hasGallery = milestone.gallery && milestone.gallery.length > 0;
+
+              return (
+                <div key={milestone.id || milestone.year} className="relative pl-8 border-l-2 border-primary">
+                  <div className="absolute left-[-9px] top-0">
+                    <div className="w-4 h-4 bg-primary rounded-full" />
+                  </div>
+                  <span className="inline-block bg-primary text-white px-3 py-1 rounded-full text-sm font-bold mb-2">
+                    {milestone.year}
+                  </span>
+                  <h3 className="text-lg font-heading font-semibold text-text-primary mb-2">
+                    <TranslateText>{milestone.title}</TranslateText>
+                  </h3>
+                  <p className="text-sm text-text-secondary mb-3">
+                    <TranslateText>{milestone.description}</TranslateText>
+                  </p>
                 </div>
-                <span className="inline-block bg-primary text-white px-3 py-1 rounded-full text-sm font-bold mb-2">
-                  {milestone.year}
-                </span>
-                <h3 className="text-lg font-heading font-semibold text-text-primary mb-2">
-                  <TranslateText>{milestone.title}</TranslateText>
-                </h3>
-                <p className="text-sm text-text-secondary">
-                  <TranslateText>{milestone.description}</TranslateText>
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
