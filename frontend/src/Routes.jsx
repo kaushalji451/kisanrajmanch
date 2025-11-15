@@ -25,6 +25,7 @@ import FAQ from "pages/FAQ";
 import PrivateRoute from "components/PrivateRoute";
 import { AuthProvider } from "contexts/AuthContext";
 import ExampleTranslatedPage from "pages/ExampleTranslatedPage";
+import UserRegistration from "pages/register"
 
 const Routes = () => {
   return (
@@ -57,6 +58,7 @@ const Routes = () => {
             <Route element={<PrivateRoute />}>
               <Route path="/admin-dashboard" element={<><Header /><AdminDashboard /></>} />
               <Route path="/admin-dashboard/*" element={<><Header /><AdminDashboard /></>} />
+              <Route path="/register" element={<><Header /><UserRegistration /></>} />
             </Route>
             
             <Route path="*" element={<><Header /><NotFound /></>} />
